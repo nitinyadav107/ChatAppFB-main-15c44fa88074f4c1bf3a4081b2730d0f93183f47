@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@plugin "daisyui";
+.element-class {
+  overflow: auto;
+  scrollbar-width: none; /* Firefox ke liye */
+  -ms-overflow-style: none; /* IE/Edge ke liye */
+}
+
+/* Chrome, Safari, Edge ke liye */
+.element-class::-webkit-scrollbar {
+  display: none;
+}
