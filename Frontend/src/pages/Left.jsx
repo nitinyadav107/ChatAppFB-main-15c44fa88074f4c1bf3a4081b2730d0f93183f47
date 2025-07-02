@@ -1,17 +1,21 @@
-import React from 'react'
-import Search from '../components/Search'
-import Users from '../components/Users'
-import Logout from '../components/Logout'
+import React from 'react';
+import Search from '../components/Search';
+import Users from '../components/Users';
+import useConversation from '../zustand/useConversation';
 
 const Left = () => {
-  return (
-    <div className=' bg-gray-900 w-[30%] text-gray-200'>
-      <Search/>
-      <Users/>
-     
-      
-    </div>
-  )
-}
+  const { showChat } = useConversation();
 
-export default Left
+  return (
+    <div
+      className={`w-full lg:w-[30%] bg-gray-900 text-gray-200 ${
+        showChat ? 'hidden' : 'block'
+      } lg:block`}
+    >
+      {/* <Search /> */}
+      <Users />
+    </div>
+  );
+};
+
+export default Left;

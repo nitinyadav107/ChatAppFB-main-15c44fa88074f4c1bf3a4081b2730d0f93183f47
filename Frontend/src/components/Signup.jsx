@@ -10,6 +10,7 @@ const Signup = () => {
     
     
    
+   
   const [isSignup, setIsSignup] = React.useState(true);
 
   const handleClick = () => {
@@ -31,7 +32,7 @@ const Signup = () => {
     }
 
     try {
-      const url = isSignup ? '/api/user/signup' : '/api/user/login';
+       const url = isSignup ? '/api/user/signup' : '/api/user/login';
       const response = await axios.post(url, formValues);
       if(response.data.success){
         toast.success(isSignup ? "User created successfully" : "Login successful");
@@ -41,11 +42,12 @@ const Signup = () => {
           
         }
         else{
+           navigate('/home');
           const userData = response.data.user;
           localStorage.setItem("ChatApp", JSON.stringify(userData));
           setAuthUser(userData); 
           console.log(authUser.id);
-          navigate('/home');
+         
         }
        
         

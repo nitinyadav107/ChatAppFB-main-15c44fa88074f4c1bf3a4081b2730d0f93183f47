@@ -6,7 +6,7 @@ import Menu from './Menu'
 
 const Home = () => {
   return (
-    <div className='flex h-screen'>
+    <div className='flex h-screen overflow-hidden'>
       <ToastContainer />
       <Menu/>
       <Left/>

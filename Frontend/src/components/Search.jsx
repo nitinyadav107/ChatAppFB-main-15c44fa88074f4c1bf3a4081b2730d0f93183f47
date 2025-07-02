@@ -1,27 +1,27 @@
-import React from 'react'
+// Search.jsx
+import React from 'react';
 import { FaSearch } from "react-icons/fa";
-const Search = () => {
+
+const Search = ({ onSearch }) => {
   return (
     <div className='px-6 py-4'>
-      <form action="">
+      <form onSubmit={(e) => e.preventDefault()}>
         <div className='flex gap-2'>
-        <label className="border-[1px] rounded-lg flex items-center gap-2 w-[80%] bg-slate-800">
-          <input type="text" className="outline-none border-none px-2" placeholder="Search" />
-
-        </label>
-        <button>
-          <FaSearch className='text-4xl p-2 hover:bg-gray-800 rounded-full duration-300'/>
-        </button>
-
+          <label className="border-[1px] rounded-lg flex items-center gap-2 w-full bg-slate-800">
+            <input
+              type="text"
+              className="outline-none border-none px-3 py-2 bg-transparent w-full text-white placeholder-gray-400"
+              placeholder="Search users..."
+              onChange={(e) => onSearch(e.target.value)}
+            />
+          </label>
+          <button type="submit" className="hidden">
+            <FaSearch />
+          </button>
         </div>
-        
-
       </form>
-
-
     </div>
-  )
-}
+  );
+};
 
-export default Search
-
+export default Search;
