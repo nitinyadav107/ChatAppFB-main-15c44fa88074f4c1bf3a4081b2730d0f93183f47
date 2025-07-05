@@ -12,10 +12,11 @@ export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const { authUser } = useAuth();
+  const backendUrl=import.meta.env.VITE_BACKEND_URL
 
   useEffect(() => {
     if (authUser) {
-      const newSocket = io("http://localhost:8000", {
+      const newSocket = io(`${backendUrl}`, {
         query: {
           userId: authUser.id,
         },
@@ -37,3 +38,4 @@ export const SocketProvider = ({ children }) => {
     </SocketContext.Provider>
   );
 };
+

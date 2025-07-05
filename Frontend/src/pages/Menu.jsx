@@ -12,6 +12,7 @@ import axios from 'axios';
 const Menu = () => {
   // Assume localStorage only contains the user id or token
   const storedUser = JSON.parse(localStorage.getItem('ChatApp')); // e.g., just the id
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
  
   // For file upload, store the selected file separately
@@ -27,7 +28,7 @@ const Menu = () => {
     const fetchUserData = async () => {
       if (storedUser) {
         try {
-          const response = await axios.post(`/api/user/sendProfileImage`,{id:storedUser.id});
+          const response = await axios.post(`${backendUrl}/api/user/sendProfileImage`,{id:storedUser.id});
           if (response.data.success) {
             console.log('User data fetched successfully:' + response.data.user);
             setImage(response.data.user.image);

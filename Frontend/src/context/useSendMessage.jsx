@@ -7,6 +7,7 @@ const useSendMessage = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessage, selectedConversation } = useConversation();
   const sender_id = (JSON.parse(localStorage.getItem('ChatApp'))).id
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const sendMessages = async (message) => {
     setLoading(true);
@@ -17,7 +18,7 @@ const useSendMessage = () => {
           try {
 
             const data = await axios.post(
-              `/api/message/send/${selectedConversation._id}`,
+              `${backendUrl}/api/message/send/${selectedConversation._id}`,
               { sender_id, message }
             );
 
@@ -26,14 +27,14 @@ const useSendMessage = () => {
             
            
           
-            const res = await axios.post(`/api/ai/gemini`, { message });
+            const res = await axios.post(`${backendUrl}/api/ai/gemini`, { message });
             const newMessage = {
               message: res.data.reply,
             };
 
           
             const gemini = await axios.post(
-              `/api/message/send/${sender_id}`,
+              `${backendUrl}/api/message/send/${sender_id}`,
               { sender_id: selectedConversation._id, message: newMessage.message }
             );
             
@@ -53,7 +54,7 @@ const useSendMessage = () => {
       }
       else {
         const res = await axios.post(
-          `/api/message/send/${selectedConversation._id}`,
+          `${backendUrl}/api/message/send/${selectedConversation._id}`,
           { sender_id, message }
         );
         if(res.data.error){

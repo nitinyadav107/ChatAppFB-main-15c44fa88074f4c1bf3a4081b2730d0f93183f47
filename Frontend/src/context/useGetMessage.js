@@ -7,6 +7,7 @@ const useGetMessage = () => {
   const receiver_id=(JSON.parse(localStorage.getItem('ChatApp'))).id
   console.log(receiver_id)
   //  console.log(selectedConversation._id)
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const getMessages = async () => {
@@ -15,7 +16,7 @@ const useGetMessage = () => {
         setLoading(true);
         try {
           const res = await axios.get(
-            `/api/message/get/${receiver_id}/${selectedConversation._id}`
+            `${backendUrl}/api/message/get/${receiver_id}/${selectedConversation._id}`
           );
           
           setMessage(res.data.messages);

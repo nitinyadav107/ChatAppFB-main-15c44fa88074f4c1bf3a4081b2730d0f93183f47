@@ -43,7 +43,7 @@ const Chatuser = () => {
         </div>
 
         {/* Right - Call Icons */}
-        <div className="flex items-center gap-3 sm:gap-4 text-white text-lg sm:text-2xl">
+        {/* <div className="flex items-center gap-3 sm:gap-4 text-white text-lg sm:text-2xl">
           <button
             title="Audio Call"
             className="hover:text-cyan-400 transition duration-200"
@@ -58,7 +58,7 @@ const Chatuser = () => {
           >
             <BsCameraVideo />
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

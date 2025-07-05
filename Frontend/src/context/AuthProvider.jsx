@@ -8,6 +8,7 @@ export const AuthContext = React.createContext()
 export const AuthProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState(null)
   const navigate = useNavigate();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const initialUserState = localStorage.getItem('ChatApp')
@@ -17,7 +18,7 @@ export const AuthProvider = ({ children }) => {
   }, [])
   const logout = async () => {
     try {
-      const response = await axios.post('/api/user/logout');
+      const response = await axios.post(`${backendUrl}/api/user/logout`);
       if (response.data.success) {
         navigate('/');
         setAuthUser(null);

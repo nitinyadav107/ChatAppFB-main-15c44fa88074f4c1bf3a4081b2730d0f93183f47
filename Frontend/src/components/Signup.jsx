@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router';
 const Signup = () => {
     const { authUser,setAuthUser } = useAuth();
     const navigate = useNavigate();
+    const backendUrl=import.meta.env.VITE_BACKEND_URL;
     
     
    
@@ -32,7 +33,7 @@ const Signup = () => {
     }
 
     try {
-       const url = isSignup ? '/api/user/signup' : '/api/user/login';
+       const url = isSignup ? `${backendUrl}/api/user/signup` : `${backendUrl}/api/user/login`;
       const response = await axios.post(url, formValues);
       if(response.data.success){
         toast.success(isSignup ? "User created successfully" : "Login successful");

@@ -10,6 +10,7 @@ const VerifyEmail = () => {
   const [loading, setLoading] = useState(false);
   const { userdata, setAuthUser,authUser } = useAuth();
   const navigate = useNavigate();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const handleVerify = async (event) => {
     event.preventDefault();
@@ -24,7 +25,7 @@ const VerifyEmail = () => {
 
     try {
       const response = await axios.post(
-        '/api/user/verifyemail',
+        `${backendUrl}/api/user/verifyemail`,
         { code: trimmedOtp, email: localStorage.getItem('email') }, // Send the OTP in JSON format with the key "code"
 
       );
