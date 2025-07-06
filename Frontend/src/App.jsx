@@ -8,15 +8,21 @@ import { Route, Routes } from 'react-router-dom'
 
 import VerifyEmail from './components/VerifyEmail'
 import Home from './pages/Home'
+import { useAuth } from './context/AuthProvider'
 
 function App() {
+  const { authUser }=useAuth();
   
 
   return (
     <Routes>
       <Route path='/verify' element={<VerifyEmail />} />
       <Route path='/' element={ <Signup/> }/>
-      <Route path='/home' element={ <Home/> }/>
+      {
+      (authUser)? <Route path='/home' element={ <Home/> }/> :<Route path='/home' element={ <Signup/> }/>
+      }
+      
+      
     </Routes>
   )
 }
