@@ -1,6 +1,6 @@
 import dotenv from "dotenv"
 import axios from "axios";
-const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
+const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
 dotenv.config();
 const API_KEY = process.env.GEMINI_API_KEY;
 console.log("API key:", API_KEY);
