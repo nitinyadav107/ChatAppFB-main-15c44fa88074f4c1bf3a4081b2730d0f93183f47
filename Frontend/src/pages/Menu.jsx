@@ -14,31 +14,31 @@ const Menu = () => {
   const storedUser = JSON.parse(localStorage.getItem('ChatApp')); // e.g., just the id
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
- 
+
   // For file upload, store the selected file separately
   const [file, setFile] = useState(null);
-  const [fullname,setFullname] = useState(storedUser.fullname);
-  const [email,setEmail] = useState(storedUser.email);
-  const[image,setImage] = useState('');
+  const [fullname, setFullname] = useState(storedUser.fullname);
+  const [email, setEmail] = useState(storedUser.email);
+  const [image, setImage] = useState('');
   // State to manage sidebar visibility
   const [isSidebarVisible, setSidebarVisible] = useState(false);
 
   // Fetch user data when component mounts
 
-    const fetchUserData = async () => {
-      if (storedUser) {
-        try {
-          const response = await axios.post(`${backendUrl}/api/user/sendProfileImage`,{id:storedUser.id});
-          if (response.data.success) {
-            console.log('User data fetched successfully:' + response.data.user);
-            setImage(response.data.user.image);
-          }
-        } catch (error) {
-          console.error('Error fetching user data:', error);
+  const fetchUserData = async () => {
+    if (storedUser) {
+      try {
+        const response = await axios.post(`${backendUrl}/api/user/sendProfileImage`, { id: storedUser.id });
+        if (response.data.success) {
+          console.log('User data fetched successfully:' + response.data.user);
+          setImage(response.data.user.image);
         }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
       }
-    };
-    fetchUserData();
+    }
+  };
+  fetchUserData();
 
 
   // Toggle the sidebar visibility
@@ -61,8 +61,8 @@ const Menu = () => {
       if (response.data.success) {
         console.log('Image uploaded successfully');
         fetchUserData();
-        
-      
+
+
       } else {
         console.log('Image upload failed');
       }
@@ -70,7 +70,7 @@ const Menu = () => {
       console.error('Error uploading image:', error);
     }
   };
-  
+
 
   return (
     <div className="flex h-screen">
@@ -90,7 +90,7 @@ const Menu = () => {
         </div>
 
         {/* Middle: Navigation icons */}
-        <div className="flex flex-col space-y-6">
+        {/* <div className="flex flex-col space-y-6">
           <button title="Chats" className="hover:text-blue-500 focus:outline-none">
             <IoChatbubbleEllipsesOutline size={24} />
           </button>
@@ -107,7 +107,7 @@ const Menu = () => {
           >
             <IoSettingsOutline size={24} />
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* Expanded sidebar menu overlay */}
@@ -140,13 +140,13 @@ const Menu = () => {
                 className="rounded-full h-24 w-24 object-cover mb-2"
               />
               <form onSubmit={handleUpload} className="flex flex-col items-center">
-                <input 
-                  type="file" 
+                <input
+                  type="file"
                   accept="image/*"
-                  onChange={(e) =>setFile(e.target.files[0])}
+                  onChange={(e) => setFile(e.target.files[0])}
                   className="mb-2"
                 />
-                <button 
+                <button
                   type="submit"
                   className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded"
                 >
@@ -156,7 +156,7 @@ const Menu = () => {
             </div>
 
             {/* Additional Menu Options */}
-            <div className="space-y-4">
+            {/* <div className="space-y-4">
               <button className="flex items-center space-x-2 hover:bg-gray-800 p-2 rounded-md w-full focus:outline-none">
                 <IoChatbubbleEllipsesOutline size={20} />
                 <span>Chats</span>
@@ -173,13 +173,17 @@ const Menu = () => {
                 <IoSettingsOutline size={20} />
                 <span>Settings</span>
               </button>
-            </div>
+            </div> */}
           </div>
 
           {/* Logout Button at the Bottom */}
-          <div>
-            <Logout />
+          <div className="group mt-auto flex flex-col items-center p-3 cursor-pointer text-gray-100 hover:text-red-500 transition-colors duration-200">
+            <Logout className="w-6 h-6" />
+            <span className="text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              Logout
+            </span>
           </div>
+
         </div>
       )}
     </div>
