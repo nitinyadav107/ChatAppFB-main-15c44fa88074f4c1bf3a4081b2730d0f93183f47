@@ -57,7 +57,7 @@ const Menu = () => {
       formData.append('image', file);
 
       // POST request to upload the image
-      const response = await axios.post('/api/user/uploadImage', formData);
+      const response = await axios.post(`${backendUrl}/api/user/uploadImage`, formData);
       if (response.data.success) {
         console.log('Image uploaded successfully');
         fetchUserData();
