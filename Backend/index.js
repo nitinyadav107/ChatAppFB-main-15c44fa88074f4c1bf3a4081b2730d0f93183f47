@@ -27,7 +27,7 @@ const server = http.createServer(app);
 // Socket.IO setup
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3010", // Allow frontend URL
+    origin: "https://chatappfb-1.onrender.com", // Allow frontend URL
     methods: ["GET", "POST"],
   },
 });
